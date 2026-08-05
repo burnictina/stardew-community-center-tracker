@@ -1,6 +1,6 @@
-## Getting Started
+##Stardew Community Center Tracker
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Desktop aplikacija koj služi za praćenje napretka u Community Centru za igricu Stardew Valley. Korisnik može označiti što je sakupljeno i pratiti napredak svakog bundle za 100% završetak.
 
 ## Folder Structure
 
