@@ -11,11 +11,11 @@ import java.util.*;
 
 public class SaveFile {
     private String name;
-    private ArrayList<Room> rooms;
-   
-    public SaveFile(String name, ArrayList<Room> rooms) {
+    private List<BundleItem> bundleProgress;
+    
+    public SaveFile(String name, List<BundleItem> bundleProgress) {
         this.name = name;
-        this.rooms = rooms;
+        this.bundleProgress = bundleProgress;
     }
 
     public String getName() {
@@ -26,17 +26,31 @@ public class SaveFile {
         this.name = name;
     }
 
-    public void addRooms(Room newRoom) {
-        rooms.add(newRoom);
+    public List<BundleItem> getBundleProgress() {
+        return bundleProgress;
     }
 
-    public ArrayList<Room> getRooms() {
-        return rooms;
+    public void setBundleProgress(List<BundleItem> bundleProgress) {
+        this.bundleProgress = bundleProgress;
     }
 
-    public void setRooms(ArrayList<Room> rooms) {
-        this.rooms = rooms;
+    private Optional<BundleItem> findBundleItem(Item item){
+        return bundleProgress.stream()
+        .filter(i->i.getItem().equals(item))
+        .findFirst();
+    }
+   
+    public void markItemCompleted(Item item){
+        findBundleItem(item)
+        .ifPresent(i->i.setCompleted(true));
+    }
+   
+    public boolean isItemCompleted(){
+        return true;
     }
 
+    public BundleItem getCompletedItem(){
+        return bundleProgress.getFirst();
+    }
     
 }

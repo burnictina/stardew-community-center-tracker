@@ -3,12 +3,14 @@ package com.stardewtracker.model;
 import java.util.*;
 
 public class Room {
+    private Integer id;
     private String name;
-    private ArrayList<Bundle> bundles;
+    private List<Bundle> requiredBundles;
 
-    public Room(String name, ArrayList<Bundle> bundles) {
+    public Room(Integer id, String name, List<Bundle> requiredBundles) {
+        this.id = id;
         this.name = name;
-        this.bundles = bundles;
+        this.requiredBundles = requiredBundles;
     }
 
     public String getName() {
@@ -19,13 +21,22 @@ public class Room {
         this.name = name;
     }
 
-    public ArrayList<Bundle> getBundles() {
-        return bundles;
+    public Integer getId() {
+        return id;
     }
 
-    public void setBundles(ArrayList<Bundle> bundles) {
-        this.bundles = bundles;
+    public void setId(Integer id) {
+        this.id = id;
     }
+
+    public List<Bundle> getRequiredBundles() {
+        return requiredBundles;
+    }
+
+    public void setRequiredBundles(List<Bundle> requiredBundles) {
+        this.requiredBundles = requiredBundles;
+    }
+    
     
     
 }

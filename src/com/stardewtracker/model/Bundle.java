@@ -10,10 +10,12 @@ import java.util.*;
  */
 
 public class Bundle {
+    private Integer id;
     private String name;
-    private ArrayList<BundleItem> requiredItems;
+    private List<Item> requiredItems;
     
-    public Bundle(String name, ArrayList<BundleItem> requiredItems) {
+    public Bundle(Integer id, String name, List<Item> requiredItems) {
+        this.id = id;
         this.name = name;
         this.requiredItems = requiredItems;
     }
@@ -26,31 +28,30 @@ public class Bundle {
         this.name = name;
     }
 
-    public List<BundleItem> getRequiredItems() {
+    public List<Item> getRequiredItems() {
         return requiredItems;
     }
     
 
-    public void addItem(BundleItem newItem){
+    public void addItem(Item newItem){
         requiredItems.add(newItem);
     }
 
-    public void setRequiredItems(ArrayList<BundleItem> requiredItems) {
+    public void setRequiredItems(List<Item> requiredItems) {
         this.requiredItems = requiredItems;
     }
 
-    public Boolean isCompleted(){
-        int brojac = 0;
-       for(BundleItem i : requiredItems){
-        if (i.getCompleted()){
-            brojac+=1;
-        }
-       }
-        if(brojac == requiredItems.size()){
-            return true;
-        } else{
-            return false;
-        }
+    public Integer getId() {
+        return id;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    /*public boolean isCompleted(){
+        return requiredItems.stream()
+        .allMatch(BundleItem::getCompleted);
+    }*/
 
 }

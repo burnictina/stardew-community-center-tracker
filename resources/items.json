@@ -1,0 +1,26 @@
+[
+{
+    "id": 1,
+    "name": "Parsnip",
+    "type": "CROPS",
+    "season": "SPRING"
+},
+{
+    "id": 2,
+    "name": "Green Bean",
+    "type": "CROPS",
+    "season": "SPRING"
+},
+{
+    "id": 3,
+    "name": "Cauliflower",
+    "type": "CROPS",
+    "season": "SPRING"
+},
+{
+    "id": 4,
+    "name": "Potato",
+    "type": "CROPS",
+    "season": "SPRING"
+}
+]
