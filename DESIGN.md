@@ -45,3 +45,10 @@ U resources su stavljene .json datoteke sa stvarnim podacima objekata.
 U repository folderu će biti klase koje će se baviti korištenjem .json datoteka u aplikaciji.
 
 Za sada se radi na refaktorizaciji ostalih klasa modela kako bi se mogle koristiti sa .json datotekama.
+
+## ItemRepository
+
+Odgovornost:
+- učitati item.json
+- spremiti Item objekte
+- omogućiti dohvat Item objekata

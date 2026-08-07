@@ -15,7 +15,9 @@ public class SaveFile {
     
     public SaveFile(String name, List<BundleItem> bundleProgress) {
         this.name = name;
-        this.bundleProgress = bundleProgress;
+        this.bundleProgress = bundleProgress != null
+        ? bundleProgress
+        : new ArrayList<>();
     }
 
     public String getName() {
@@ -30,8 +32,8 @@ public class SaveFile {
         return bundleProgress;
     }
 
-    public void setBundleProgress(List<BundleItem> bundleProgress) {
-        this.bundleProgress = bundleProgress;
+    public void addBundleItem(BundleItem newBundleItem){
+        bundleProgress.add(newBundleItem);
     }
 
     private Optional<BundleItem> findBundleItem(Item item){
@@ -44,13 +46,33 @@ public class SaveFile {
         findBundleItem(item)
         .ifPresent(i->i.setCompleted(true));
     }
+
+    public void markItemUncompleted(Item item){
+        BundleItem bundleItem = findBundleItem(item)
+        .orElseThrow(() ->
+            new IllegalArgumentException("Item nije pronađen")
+        );
+        bundleItem.setCompleted(false);
+    }
    
-    public boolean isItemCompleted(){
-        return true;
+    public boolean isItemCompleted(Item item){
+        return findBundleItem(item)
+        .map(BundleItem::getCompleted)
+        .orElse(false);
     }
 
-    public BundleItem getCompletedItem(){
-        return bundleProgress.getFirst();
+    public long getCompletedItemCount(){
+        
+        return bundleProgress
+        .stream()
+        .filter(BundleItem::getCompleted)
+        .count();
+    }
+
+    public long getTotalItemCount(){
+        return bundleProgress
+        .stream()
+        .count();
     }
     
 }

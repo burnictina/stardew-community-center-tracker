@@ -49,9 +49,5 @@ public class Bundle {
         this.id = id;
     }
     
-    /*public boolean isCompleted(){
-        return requiredItems.stream()
-        .allMatch(BundleItem::getCompleted);
-    }*/
 
 }
