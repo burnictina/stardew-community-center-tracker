@@ -12,15 +12,6 @@ public class ItemRepository extends BaseRepository<Item> {
         super(loadItems());
     }
 
-    @Override
-    protected int getId(Item item){
-        return item.getId();
-    }
-
-    @Override
-    protected String getName(Item item){
-        return item.getName();
-    }
 
     private static List<Item> loadItems(){
 

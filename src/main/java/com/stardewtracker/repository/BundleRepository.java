@@ -41,18 +41,6 @@ public class BundleRepository extends BaseRepository<Bundle>{
         return new Bundle(id, name, requiredItems);
     }
 
-    @Override
-    protected int getId(Bundle bundle) {
-        return bundle.getId();
-    }
-
-
-
-
-    @Override
-    protected String getName(Bundle bundle) {
-       return bundle.getName();
-    }
 
 
 }

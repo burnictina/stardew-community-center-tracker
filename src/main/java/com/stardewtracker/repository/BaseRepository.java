@@ -1,8 +1,9 @@
 package com.stardewtracker.repository;
 
 import java.util.*;
+import com.stardewtracker.utils.*;;
 
-public abstract class BaseRepository<T> implements Repository<T> {
+public abstract class BaseRepository<T extends Identifiable> implements Repository<T> {
     
     protected List<T>  entities;
 
@@ -18,7 +19,7 @@ public abstract class BaseRepository<T> implements Repository<T> {
     @Override
     public Optional<T> findById(int id) {
         return entities.stream()
-        .filter(entity -> getId(entity) == id)
+        .filter(entity -> entity.getId() == id)
         .findFirst();
         
     }
@@ -26,13 +27,10 @@ public abstract class BaseRepository<T> implements Repository<T> {
     @Override
     public Optional<T> findByName(String name) {
         return entities.stream()
-        .filter(entity -> getName(entity).equals(name))
+        .filter(entity -> entity.getName().equals(name))
         .findFirst();
     }
 
-    protected abstract int getId(T entity);
-
-    protected abstract String getName(T entity);
     
 
 }

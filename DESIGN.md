@@ -87,3 +87,8 @@ Odgovornost:
 - sprema Room objekte
 - omogućava dohvat Room objekata
 
+## BaseRepository
+
+Napravljena generička klasa koja ima sve potrebne metode za pretragu i dohvatu objekata.
+
+Te sve metode se dalje koriste u svim repository klasama. Opet smanjenje dupliciranog koda.

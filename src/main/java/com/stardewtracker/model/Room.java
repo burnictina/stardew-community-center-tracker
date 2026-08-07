@@ -2,17 +2,20 @@ package com.stardewtracker.model;
 
 import java.util.*;
 
-public class Room {
-    private Integer id;
+import com.stardewtracker.utils.Identifiable;
+
+public class Room implements Identifiable {
+    private int id;
     private String name;
     private List<Bundle> requiredBundles;
 
-    public Room(Integer id, String name, List<Bundle> requiredBundles) {
+    public Room(int id, String name, List<Bundle> requiredBundles) {
         this.id = id;
         this.name = name;
         this.requiredBundles = requiredBundles;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -20,12 +23,13 @@ public class Room {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Integer getId() {
+    
+    @Override
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

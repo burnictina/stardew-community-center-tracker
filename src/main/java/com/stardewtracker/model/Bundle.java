@@ -2,17 +2,19 @@ package com.stardewtracker.model;
 
 import java.util.*;
 
-public class Bundle {
-    private Integer id;
+import com.stardewtracker.utils.Identifiable;
+
+public class Bundle implements Identifiable{
+    private int id;
     private String name;
     private List<Item> requiredItems;
     
-    public Bundle(Integer id, String name, List<Item> requiredItems) {
+    public Bundle(int id, String name, List<Item> requiredItems) {
         this.id = id;
         this.name = name;
         this.requiredItems = requiredItems;
     }
-
+    @Override
     public String getName() {
         return name;
     }
@@ -33,12 +35,12 @@ public class Bundle {
     public void setRequiredItems(List<Item> requiredItems) {
         this.requiredItems = requiredItems;
     }
-
-    public Integer getId() {
+    @Override
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

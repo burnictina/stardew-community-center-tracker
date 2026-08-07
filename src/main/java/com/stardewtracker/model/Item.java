@@ -1,9 +1,10 @@
 package com.stardewtracker.model;
 
 import com.stardewtracker.enums.*;
+import com.stardewtracker.utils.Identifiable;
 
 
-public class Item {
+public class Item implements Identifiable{
     private int id;
     private String name;
     private ItemType type;
@@ -16,6 +17,7 @@ public class Item {
         this.season = season;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -40,9 +42,11 @@ public class Item {
         this.season = season;
     }
 
+    @Override
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;

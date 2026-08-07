@@ -38,14 +38,4 @@ public class RoomRepository extends BaseRepository<Room>{
 
         return new Room(id, name, requiredBundles);
     }
-
-    @Override
-    protected int getId(Room room) {
-        return room.getId();
-    }
-
-    @Override
-    protected String getName(Room room) {
-       return room.getName();
-    }
 }
