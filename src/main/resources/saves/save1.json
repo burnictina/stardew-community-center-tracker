@@ -1,0 +1,15 @@
+[
+    {
+        "name": "Save 1",
+        "bundleProgress": [
+            {
+                "itemId":1,
+                "completed": true
+            },
+            {
+                "itemId": 2,
+                "completed": false
+            }
+        ]
+    }
+]

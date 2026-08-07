@@ -74,4 +74,11 @@ public class Item implements Identifiable{
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Item [id = " + id + ", name = " + name + "]";
+    }
+
+      
+
 }
