@@ -28,6 +28,10 @@ public class SaveFileRepository {
     }
 
     public void addSave(SaveFile save) {
+
+        if(findSaveByName(save.getName()).isPresent()){
+            throw new RuntimeException("Save već postoji: " + save.getName());
+        }
         saves.add(save);
     }
 
