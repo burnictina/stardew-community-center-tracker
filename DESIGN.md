@@ -52,3 +52,38 @@ Odgovornost:
 - učitati item.json
 - spremiti Item objekte
 - omogućiti dohvat Item objekata
+
+## 07.08.2026
+
+## Refaktor na Maven 
+
+Napravljen je novi projekt u mavenu gdje se sve kopiralo iz starog projekta kako bi moglo se raditi sa Json.
+
+Dalje bi se trebalo krenuti sa ostalim repositories, za bundle i room klase pošto za njih postoje napravljeni .json datoteke unutar resources mape.
+
+## JsonReader
+
+Dodana klasa sa metodom readJson koju će korisiti svaka repository klasa pa nema potrebe za duplanjem te metode za svaku klasu.
+
+Ovako ju imaju svi samo pozivom JsonReader.readJson()
+
+## BundleRepository
+
+Odgovornost:
+- učitati bundle.json
+- spremiti Bundle objekte
+- omogućiti dohvat Bundle objekata
+
+## JsonRepositoryHelper
+
+Dodana klasa sa jednom generičkom metodom kojom se parsira lista <T> objekata koji su parsirani.
+
+Bila je to metoda unutar vise repositories koja se mogal generički napisati kako bi se smanjio višak gotovo istih kodova.
+
+## RoomRepository
+
+Odgovornost:
+- učitava room.json
+- sprema Room objekte
+- omogućava dohvat Room objekata
+

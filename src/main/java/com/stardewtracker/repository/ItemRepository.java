@@ -1,63 +1,35 @@
 package com.stardewtracker.repository;
 
-import java.io.IOException;
-import java.nio.file.*;
 import java.util.*;
 import com.fasterxml.jackson.databind.*;
 
 import com.stardewtracker.enums.*;
 import com.stardewtracker.model.*;
 
-public class ItemRepository {
-    private List<Item> items; 
+public class ItemRepository extends BaseRepository<Item> {
 
     public ItemRepository() {
-        this.items = loadItems();
+        super(loadItems());
     }
 
-    public List<Item> getAllItems(){
-        return new ArrayList<>(items);
+    @Override
+    protected int getId(Item item){
+        return item.getId();
     }
 
-    public Optional<Item> findItemById(Item item){
-        return items.stream()
-        .filter(i -> i.equals(item))
-        .findFirst();
+    @Override
+    protected String getName(Item item){
+        return item.getName();
     }
 
-    public Optional<Item> findItemByName(String name){
-        return items.stream()
-        .filter(i->i.getName().equals(name))
-        .findFirst();
-    }
+    private static List<Item> loadItems(){
 
-    private List<Item> loadItems(){
-
-        String json = readJson("src/main/resources/items.json");
+        String json = JsonReader.readJson("src/main/resources/items.json");
         
-        return parseItems(json);
+        return JsonRepositoryHelper.parseList(json, ItemRepository::parseItem);
     }
 
-    private List<Item> parseItems(String json){
-        List<Item> itemList = new ArrayList<>();
-
-        try{
-            ObjectMapper mapper = new ObjectMapper();
-
-            JsonNode jsonArray = mapper.readTree(json);
-
-            for(JsonNode obJect : jsonArray){
-                Item item = parseItem(obJect);
-                itemList.add(item);
-            }
-        } catch(IOException e) {
-            throw new RuntimeException("Greška kod čitanja JSON podataka", e);
-        }
-
-        return itemList;
-    }
-
-    private Item parseItem(JsonNode object){
+    private static Item parseItem(JsonNode object){
         int id = object.get("id").asInt();
         String name = object.get("name").asText();
         String seasonString = object.get("season").asText();
@@ -70,12 +42,5 @@ public class ItemRepository {
         return new Item(id,name,type,season);
     }
 
-    private static String readJson(String filePath){
-        try{
-            return Files.readString(Path.of(filePath));
-        } catch (IOException e){
-            throw new RuntimeException("Ne mogu učitati JSON datoteku", e);
-        }
-    }
 
 }
