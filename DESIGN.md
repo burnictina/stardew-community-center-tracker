@@ -96,3 +96,9 @@ Te sve metode se dalje koriste u svim repository klasama. Opet smanjenje duplici
 ## SaveFileRepository
 
 Klasa napravljenja da se bavi SaveFile objektom koje čita i sprema u .json datoteke. Svaka datoteka je poseban SaveFile objekt.
+
+# Service
+
+## ItemService, BundleService, RoomService i SaveService
+
+klase za delegaciju repositorya kao priprema prije izrade gui-ja
