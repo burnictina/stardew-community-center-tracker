@@ -2,7 +2,7 @@ package com.stardewtracker;
 
 import com.stardewtracker.repository.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import com.stardewtracker.model.*;;
 
@@ -58,32 +58,22 @@ public class App
 
         System.out.println();
         System.out.println("=== SAVE FILE TEST ===");
+        
+        SaveFile save = saveFileRepository.loadSave("Save 1");
 
-        SaveFile save = new SaveFile("Save 2", new ArrayList<>());
+        System.out.println("Prije: ");
+        System.out.println("Completed: "+ save.getCompletedItemCount());
 
-        save.addBundleItem(new BundleItem(parsnip, false));
+        Item item = itemRepository.findById(1)
+        .orElseThrow();
 
-        System.out.println("Save name: " + save.getName());
+        save.markItemCompleted(item);
 
-        System.out.println("Completed items: " + save.getCompletedItemCount());
+        System.out.println("Poslije: ");
+        System.out.println("Completed: " + save.getCompletedItemCount());
 
-        save.markItemCompleted(parsnip);
+        saveFileRepository.save(save);
 
-        System.out.println("After completing: ");
-
-        System.out.println("Completed items: "+ save.getCompletedItemCount());
-
-        System.out.println();
-        System.out.println("=== SAVE REPOSITORY ===");
-
-        saveFileRepository.addSave(save);
-
-        for(SaveFile saveFile : saveFileRepository.getAllSaves()){
-            System.out.println(saveFile.getName());
-
-            System.out.println("Progress: "+ saveFile.getCompletedItemCount() + "/"+saveFile.getTotalItemCount());
-        }
-
-
+        System.out.println("Save spremljen!");
     }
 }

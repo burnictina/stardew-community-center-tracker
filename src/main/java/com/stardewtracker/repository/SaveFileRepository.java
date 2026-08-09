@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.util.*;
 
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.stardewtracker.model.*;
 
 public class SaveFileRepository {
@@ -51,6 +53,56 @@ public class SaveFileRepository {
        );
 
        saves.add(saveFile);
+
+       writeSaveFile(saveFile);
+    }
+
+    private ObjectNode saveToJson(SaveFile saveFile) {
+        ObjectMapper mapper = new ObjectMapper();
+
+        ObjectNode saveNode = mapper.createObjectNode();
+
+        saveNode.put("name", saveFile.getName());
+
+        ArrayNode progressArray = mapper.createArrayNode();
+
+        for(BundleItem bundleItem : saveFile.getBundleProgress()) {
+            ObjectNode bundleItemNode = mapper.createObjectNode();
+
+            bundleItemNode.put("itemId", bundleItem.getItem().getId());
+            bundleItemNode.put("completed",bundleItem.getCompleted());
+
+            progressArray.add(bundleItemNode);
+        }
+
+        saveNode.set("bundleProgress", progressArray);
+
+        return saveNode;
+
+    }
+
+    private void writeSaveFile(SaveFile saveFile){
+        ObjectMapper mapper = new ObjectMapper();
+
+        ObjectNode saveNode = saveToJson(saveFile);
+
+        ArrayNode savesArray = mapper.createArrayNode();
+        savesArray.add(saveNode);
+
+        try{
+            mapper.writerWithDefaultPrettyPrinter()
+            .writeValue(getSavePath(saveFile).toFile(), savesArray);
+        }catch(IOException e){
+            throw new RuntimeException("Greška kod spremanja save filea", e);
+        }
+    }
+
+    private Path getSavePath(SaveFile saveFile){
+        String fileName = saveFile.getName()
+        .toLowerCase()
+        .replace(" ", "") + ".json";
+
+        return Path.of("src/main/resources/saves", fileName);
     }
 
     private List<SaveFile> loadSaves(){
