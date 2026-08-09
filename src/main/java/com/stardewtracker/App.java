@@ -4,7 +4,7 @@ import com.stardewtracker.repository.*;
 
 import java.util.*;
 
-import com.stardewtracker.model.*;;
+import com.stardewtracker.model.*;
 
 public class App 
 {
@@ -26,6 +26,7 @@ public class App
         System.out.println("=== FIND ITEM BY ID ===");
 
         Item parsnip = itemRepository.findById(1).orElseThrow();
+        Item greenBean = itemRepository.findById(2).orElseThrow();
 
         System.out.println(parsnip);
 
@@ -75,5 +76,21 @@ public class App
         saveFileRepository.save(save);
 
         System.out.println("Save spremljen!");
+
+        System.out.println();
+        System.out.println("=== NOVI SAVE ===");
+
+        BundleItem parsnipProgress = new BundleItem(parsnip, true);
+        BundleItem beanProgress = new BundleItem(greenBean, false);
+
+        List<BundleItem> progress = new ArrayList<>();
+
+        progress.add(parsnipProgress);
+        progress.add(beanProgress);
+
+        SaveFile savefile2 = new SaveFile("Save 2", progress);
+
+        saveFileRepository.addSave(savefile2);
+
     }
 }

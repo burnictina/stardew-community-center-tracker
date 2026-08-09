@@ -35,6 +35,7 @@ public class SaveFileRepository {
             throw new RuntimeException("Save već postoji: " + save.getName());
         }
         saves.add(save);
+        writeSaveFile(save);
     }
 
     public void deleteSave(String name) {
@@ -86,12 +87,10 @@ public class SaveFileRepository {
 
         ObjectNode saveNode = saveToJson(saveFile);
 
-        ArrayNode savesArray = mapper.createArrayNode();
-        savesArray.add(saveNode);
 
         try{
             mapper.writerWithDefaultPrettyPrinter()
-            .writeValue(getSavePath(saveFile).toFile(), savesArray);
+            .writeValue(getSavePath(saveFile).toFile(), saveNode);
         }catch(IOException e){
             throw new RuntimeException("Greška kod spremanja save filea", e);
         }
@@ -102,14 +101,14 @@ public class SaveFileRepository {
         .toLowerCase()
         .replace(" ", "") + ".json";
 
-        return Path.of("src/main/resources/saves", fileName);
+        return Path.of("src/resources/saves", fileName);
     }
 
     private List<SaveFile> loadSaves(){
         List<SaveFile> saveList = new ArrayList<>();
 
         try{
-            Path folder = Path.of("src/main/resources/saves");
+            Path folder = Path.of("src/resources/saves");
 
             if(!Files.exists(folder)){
                 return saveList;

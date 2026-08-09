@@ -102,3 +102,9 @@ Klasa napravljenja da se bavi SaveFile objektom koje čita i sprema u .json dato
 ## ItemService, BundleService, RoomService i SaveService
 
 klase za delegaciju repositorya kao priprema prije izrade gui-ja
+
+## 09.08.2026.
+
+Završen backend i sve pripreme prije nego što se krene raditi GUI.
+
+Dodatno razrješeni maleni buggovi kod testiranja prije gui-ja.
