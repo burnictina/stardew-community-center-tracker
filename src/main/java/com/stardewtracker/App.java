@@ -15,7 +15,7 @@ public class App extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main-view.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
 
         stage.setTitle("Stardew Community Center Tracker");
         stage.setScene(scene);

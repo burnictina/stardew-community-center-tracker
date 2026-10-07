@@ -130,18 +130,110 @@ Trenutna struktura:
 
 ```text
 App
- ↓
+  ↓
 FXML View
- ↓
+  ↓
 Controller
- ↓
+  ↓
 Service
- ↓
+  ↓
 Repository
- ↓
+  ↓
 Model / JSON
 ```
 
 Napravljeni su minimalni main-view.fxml i MainController za potrebe testiranja.
 
 Sljedeći korak je zamjena testnog sučelja sa pravim GUI-jem povezanim sa backendom aplikacije.
+
+
+## GUI navigacija kroz Room, Bundle i Item
+
+Implementiran je prvi funkcionalni dio JavaFX korisničkog sučelja koji povezuje GUI s postojećim backend slojem aplkacije
+
+Glavni prikaz koristi BorderPane kao osnovni layout:
+
+- gornjy dio sadrži naslov aplikacije
+- lijevi dio sadrži popis Community Center Rooms
+- središnji dio prikazuje sadržaj odabranog Room i Bundlea
+- donji dio rezerviran je za prikaz napretka i buduće kontrole vezane uz spremanje
+
+## Učitavanje Room
+
+MainController koristi RoomService za dohvaćanje Room iz backenda
+
+Tok podataka:
+
+```
+JSON
+  ↓
+RoomRepository
+  ↓
+RoomService
+  ↓
+MainController
+  ↓
+ListView<Room>
+```
+
+Rooms se učitava prilikom inicijalizacije FXMl controllera sa initialize()
+
+ListView sadrži stvarne Room objekte.
+
+## Odabir Rooms
+
+Promjena selekcije u roomListView prati se pomoću selectedItemProperty() listenera.
+
+Kada korisnik odabere room:
+
+```
+Room selection
+  ↓
+Room objekt
+  ↓
+showRoom(Room)
+  ↓
+room.getRequiredBundles()
+  ↓
+ListView<Bundle>
+```
+Naziv odabranog rooma prikazuje se u središnjem dijelu aplikacije, a njegova lista bundleova učitava se u bundleListView.
+
+## Odabir Bundlea i prikaz Itema
+
+Promjena selekcije u bundleListView također se prati pomoću listenera.
+
+Kada korisnik odabere bundle:
+
+```
+Bundle selection
+  ↓
+Bundle objekt
+  ↓
+showBundle(Bundle)
+  ↓
+bundle.getRequiredItems()
+  ↓
+Item prikaz
+```
+
+Itemi odabranog bundlea dinamički se dodaju u itemContainer.
+
+itemContainer je VBox definiran u FXML-u, dok se njegov sadržaj stvara u controlleru jer broj i sadržaj itema ovise o trenutno odabranom bundleu.
+
+Time je napravljena podjela između:
+- FXML/Scene Builder - statična struktura korisničkog sučelja
+- Controller - dinamički sadržaj i reakcije na korisničke akcije
+- Service sloj - pristup poslovnoj logici i podacima
+- Repository sloj - učitavanje podataka iz JSON datoteka
+
+## Trenutno stanje
+
+GUI trenutno omogućuje:
+
+- učitavanje Room podataka iz backenda
+- prikaz naziva Room i odabir Room
+- prikaz pripadajućih bundles i odabir jednog bundle
+- prikaz pripadajućih items
+
+trenutni prikaz je read-only. Items nisu još povezani sa stanjem korisničkog save filea.
