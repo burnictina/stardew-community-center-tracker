@@ -1,81 +1,28 @@
 package com.stardewtracker;
 
-import com.stardewtracker.repository.*;
+import java.io.IOException;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 
-import com.stardewtracker.model.*;
+import javafx.stage.Stage;
 
-public class App 
-{
-    public static void main( String[] args )
-    {
-        ItemRepository itemRepository = new ItemRepository();
-        BundleRepository bundleRepository = new BundleRepository(itemRepository);
-        RoomRepository roomRepository = new RoomRepository(bundleRepository);
-        SaveFileRepository saveFileRepository = new SaveFileRepository(itemRepository);
+public class App extends Application {
 
+    @Override
+    public void start(Stage stage) throws IOException{
 
-        System.out.println("=== ITEMS ===");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main-view.fxml"));
 
-        for(Item item : itemRepository.getAll()){
-            System.out.println(item);
-        }
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 
-        System.out.println();
-        System.out.println("=== FIND ITEM BY ID ===");
+        stage.setTitle("Stardew Community Center Tracker");
+        stage.setScene(scene);
+        stage.show();
+    }
 
-        Item parsnip = itemRepository.findById(1).orElseThrow();
-        Item greenBean = itemRepository.findById(2).orElseThrow();
-
-        System.out.println(parsnip);
-
-
-        System.out.println();
-        System.out.println("=== BUNDLES ===");
-
-        for(Bundle bundle : bundleRepository.getAll()){
-            System.out.println(bundle);
-
-            System.out.println("Required items: ");
-            for(Item item : bundle.getRequiredItems()){
-                System.out.println("- "+ item.getName());
-            }
-            System.out.println();
-        }
-
-       
-
-        System.out.println();
-        System.out.println("=== ROOMS ===");
-
-        for(Room room : roomRepository.getAll()){
-            System.out.println(room);
-
-            for(Bundle bundle : room.getRequiredBundles()){
-                System.out.println("Bundle: "+ bundle.getName());
-            }
-        }
-
-        System.out.println();
-        System.out.println("=== SAVE FILE TEST ===");
-        
-        SaveFile save = saveFileRepository.loadSave("Save 1");
-
-        System.out.println("Prije: ");
-        System.out.println("Completed: "+ save.getCompletedItemCount());
-
-        Item item = itemRepository.findById(1)
-        .orElseThrow();
-
-        save.markItemCompleted(item);
-
-        System.out.println("Poslije: ");
-        System.out.println("Completed: " + save.getCompletedItemCount());
-
-        saveFileRepository.save(save);
-
-        System.out.println("Save spremljen!");
-       
-
+    public static void main(String[] args) {
+        launch();
     }
 }

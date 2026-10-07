@@ -97,7 +97,7 @@ Te sve metode se dalje koriste u svim repository klasama. Opet smanjenje duplici
 
 Klasa napravljenja da se bavi SaveFile objektom koje čita i sprema u .json datoteke. Svaka datoteka je poseban SaveFile objekt.
 
-# Service
+## Service
 
 ## ItemService, BundleService, RoomService i SaveService
 
@@ -108,3 +108,40 @@ klase za delegaciju repositorya kao priprema prije izrade gui-ja
 Završen backend i sve pripreme prije nego što se krene raditi GUI.
 
 Dodatno razrješeni maleni buggovi kod testiranja prije gui-ja.
+
+## 7.10.2026.
+
+## JavaFX GUI
+
+Početak izrade GUI-ja
+
+## GUI setup
+
+Aplikacija koristi JavaFX sa Mavenom.
+
+GUI prati FXML baziranu strukturu:
+
+- 'App.java' je zaslužna za pokretanje JavaFX aplikacije i loading prvotnog FXML view.
+- FXML datoteke definiraju strukturu i raspored korisničkog sučelja.
+- Controller klase obrađuju interakciju korisnika i povezuje GUI sa logikom aplikacije.
+- Scene BUilder je korišten za vizualno uređivanje FXML datoteka.
+
+Trenutna struktura:
+
+```text
+App
+ ↓
+FXML View
+ ↓
+Controller
+ ↓
+Service
+ ↓
+Repository
+ ↓
+Model / JSON
+```
+
+Napravljeni su minimalni main-view.fxml i MainController za potrebe testiranja.
+
+Sljedeći korak je zamjena testnog sučelja sa pravim GUI-jem povezanim sa backendom aplikacije.
