@@ -15,7 +15,7 @@ public class ItemRepository extends BaseRepository<Item> {
 
     private static List<Item> loadItems(){
 
-        String json = JsonReader.readJson("src/resources/items.json");
+        String json = JsonReader.readJson("/data/items.json");
         
         return JsonRepositoryHelper.parseList(json, ItemRepository::parseItem);
     }

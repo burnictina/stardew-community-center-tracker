@@ -86,11 +86,15 @@ public class SaveFileRepository {
         ObjectMapper mapper = new ObjectMapper();
 
         ObjectNode saveNode = saveToJson(saveFile);
+        Path savePath = getSavePath(saveFile);
 
 
         try{
+            Files.createDirectories(savePath.getParent());
+
             mapper.writerWithDefaultPrettyPrinter()
             .writeValue(getSavePath(saveFile).toFile(), saveNode);
+            
         }catch(IOException e){
             throw new RuntimeException("Greška kod spremanja save filea", e);
         }
@@ -101,14 +105,14 @@ public class SaveFileRepository {
         .toLowerCase()
         .replace(" ", "") + ".json";
 
-        return Path.of("src/resources/saves", fileName);
+        return Path.of("data","saves", fileName);
     }
 
     private List<SaveFile> loadSaves(){
         List<SaveFile> saveList = new ArrayList<>();
 
         try{
-            Path folder = Path.of("src/resources/saves");
+            Path folder = Path.of("data","saves");
 
             if(!Files.exists(folder)){
                 return saveList;

@@ -1,15 +1,31 @@
 package com.stardewtracker.repository;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class JsonReader {
-    public static String readJson(String filePath){
-        try{
-            return Files.readString(Path.of(filePath));
-        } catch (IOException e){
-            throw new RuntimeException("Ne mogu učitati JSON datoteku", e);
+
+    public static String readJson(String resourcePath) {
+        try (InputStream inputStream =
+                JsonReader.class.getResourceAsStream(resourcePath)) {
+
+            if (inputStream == null) {
+                throw new RuntimeException(
+                    "JSON resource nije pronađen: " + resourcePath
+                );
+            }
+
+            return new String(
+                inputStream.readAllBytes(),
+                StandardCharsets.UTF_8
+            );
+
+        } catch (IOException e) {
+            throw new RuntimeException(
+                "Ne mogu učitati JSON resource: " + resourcePath,
+                e
+            );
         }
     }
 }

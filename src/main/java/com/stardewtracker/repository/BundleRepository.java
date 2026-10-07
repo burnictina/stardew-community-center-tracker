@@ -15,7 +15,7 @@ public class BundleRepository extends BaseRepository<Bundle>{
     }
 
     private List<Bundle> loadBundles(){
-        String json = JsonReader.readJson("src/resources/bundle.json");
+        String json = JsonReader.readJson("/data/bundle.json");
         return JsonRepositoryHelper.parseList(json, this::parseBundle);
     }
 

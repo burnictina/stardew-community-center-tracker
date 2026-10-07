@@ -15,7 +15,7 @@ public class RoomRepository extends BaseRepository<Room>{
     }
 
     private List<Room> loadRooms(){
-        String json = JsonReader.readJson("src/resources/room.json");
+        String json = JsonReader.readJson("/data/room.json");
         return JsonRepositoryHelper.parseList(json, this::parseRoom);
     }
     
