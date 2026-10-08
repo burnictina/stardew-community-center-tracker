@@ -3,24 +3,774 @@
     "id": 1,
     "name": "Parsnip",
     "type": "CROPS",
-    "season": "SPRING"
+    "seasons": ["SPRING"]
 },
 {
     "id": 2,
     "name": "Green Bean",
     "type": "CROPS",
-    "season": "SPRING"
+    "seasons": ["SPRING"]
 },
 {
     "id": 3,
     "name": "Cauliflower",
     "type": "CROPS",
-    "season": "SPRING"
+    "seasons": ["SPRING"]
 },
 {
     "id": 4,
     "name": "Potato",
     "type": "CROPS",
-    "season": "SPRING"
+    "seasons": ["SPRING"]
+},
+{
+    "id": 5,
+    "name": "Tomato",
+    "type": "CROPS",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 6,
+    "name": "Hot Pepper",
+    "type": "CROPS",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 7,
+    "name": "Blueberry",
+    "type": "CROPS",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 8,
+    "name": "Melon",
+    "type": "CROPS",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 9,
+    "name": "Corn",
+    "type": "CROPS",
+    "seasons": ["FALL"]
+},
+{
+    "id": 10,
+    "name": "Eggplant",
+    "type": "CROPS",
+    "seasons": ["FALL"]
+},
+{
+    "id": 11,
+    "name": "Pumpkin",
+    "type": "CROPS",
+    "seasons": ["FALL"]
+},
+{
+    "id": 12,
+    "name": "Yam",
+    "type": "CROPS",
+    "seasons": ["FALL"]
+},
+{
+    "id": 13,
+    "name": "5 gold quality Parsnips",
+    "type": "CROPS",
+    "seasons": ["SPRING"]
+},
+{
+    "id": 14,
+    "name": "5 gold quality Melon",
+    "type": "CROPS",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 15,
+    "name": "5 gold quality Pumpkin",
+    "type": "CROPS",
+    "seasons": ["FALL"]
+},
+{
+    "id": 16,
+    "name": "5 gold quality Corn",
+    "type": "CROPS",
+    "seasons": ["FALL"]
+},
+{
+    "id": 17,
+    "name": "Large Milk",
+    "type": "ANIMAL_PRODUCE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 18,
+    "name": "Large brown Egg",
+    "type": "ANIMAL_PRODUCE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 19,
+    "name": "Large white Egg",
+    "type": "ANIMAL_PRODUCE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 20,
+    "name": "Large Goat Milk",
+    "type": "ANIMAL_PRODUCE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 21,
+    "name": "Wool",
+    "type": "ANIMAL_PRODUCE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 22,
+    "name": "Duck Egg",
+    "type": "ANIMAL_PRODUCE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 23,
+    "name": "Truffle Oil",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 24,
+    "name": "Cloth",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 25,
+    "name": "Goat Cheese",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 26,
+    "name": "Cheese",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 27,
+    "name": "Honey",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 28,
+    "name": "Jelly",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 29,
+    "name": "Apple",
+    "type": "TREES",
+    "seasons": ["FALL"]
+},
+{
+    "id": 30,
+    "name": "Apricot",
+    "type": "TREES",
+    "seasons": ["SPRING"]
+},
+{
+    "id": 31,
+    "name": "Orange",
+    "type": "TREES",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 32,
+    "name": "Peach",
+    "type": "TREES",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 33,
+    "name": "Pomegranate",
+    "type": "TREES",
+    "seasons": ["FALL"]
+},
+{
+    "id": 34,
+    "name": "Cherry",
+    "type": "TREES",
+    "seasons": ["SPRING"]
+},
+{
+    "id": 35,
+    "name": "Wild Horseradish",
+    "type": "FORAGEABLE",
+    "seasons": ["SPRING"]
+},
+{
+    "id": 36,
+    "name": "Daffodil",
+    "type": "FORAGEABLE",
+    "seasons": ["SPRING"]
+},
+{
+    "id": 37,
+    "name": "Leek",
+    "type": "FORAGEABLE",
+    "seasons": ["SPRING"]
+},
+{
+    "id": 38,
+    "name": "Dandelion",
+    "type": "FORAGEABLE",
+    "seasons": ["SPRING"]
+},
+{
+    "id": 39,
+    "name": "Grape",
+    "type": "FORAGEABLE",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 40,
+    "name": "Spice Berry",
+    "type": "FORAGEABLE",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 41,
+    "name": "Sweet Pea",
+    "type": "FORAGEABLE",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 42,
+    "name": "Common Mushroom",
+    "type": "FORAGEABLE",
+    "seasons": ["FALL"]
+},
+{
+    "id": 43,
+    "name": "Wild Plum",
+    "type": "FORAGEABLE",
+    "seasons": ["FALL"]
+},
+{
+    "id": 44,
+    "name": "Hazelnut",
+    "type": "FORAGEABLE",
+    "seasons": ["FALL"]
+},
+{
+    "id": 45,
+    "name": "BlackBerry",
+    "type": "FORAGEABLE",
+    "seasons": ["FALL"]
+},
+{
+    "id": 46,
+    "name": "Winter Root",
+    "type": "FORAGEABLE",
+    "seasons": ["WINTER"]
+},
+{
+    "id": 47,
+    "name": "Crystal Fruit",
+    "type": "FORAGEABLE",
+    "seasons": ["WINTER"]
+},
+{
+    "id": 48,
+    "name": "Snow Yam",
+    "type": "FORAGEABLE",
+    "seasons": ["WINTER"]
+},
+{
+    "id": 49,
+    "name": "Crocus",
+    "type": "FORAGEABLE",
+    "seasons": ["WINTER"]
+},
+{
+    "id": 50,
+    "name": "99 Wood (1)",
+    "type": "RESOURCES",
+    "seasons": ["ANY"]
+},
+{
+    "id": 51,
+    "name": "99 Wood (2)",
+    "type": "RESOURCES",
+    "seasons": ["ANY"]
+},
+{
+    "id": 52,
+    "name": "99 Stone",
+    "type": "RESOURCES",
+    "seasons": ["ANY"]
+},
+{
+    "id": 53,
+    "name": "10 Hardwood",
+    "type": "RESOURCES",
+    "seasons": ["ANY"]
+},
+{
+    "id": 54,
+    "name": "Coconut",
+    "type": "FORAGEABLE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 55,
+    "name": "Cactus Fruit",
+    "type": "FORAGEABLE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 56,
+    "name": "Cave Carrot",
+    "type": "FORAGEABLE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 57,
+    "name": "Red Mushroom",
+    "type": "FORAGEABLE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 58,
+    "name": "Purple Mushroom",
+    "type": "FORAGEABLE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 59,
+    "name": "Maple Syrup",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 60,
+    "name": "Oak Resin",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 61,
+    "name": "Pine Tar",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 62,
+    "name": "Morel",
+    "type": "FORAGEABLE",
+    "seasons": ["SPRING"]
+},
+{
+    "id": 63,
+    "name": "Sunfish",
+    "type": "FISH",
+    "seasons": ["SPRING", "SUMMER"]
+},
+{
+    "id": 64,
+    "name": "Catfish",
+    "type": "FISH",
+    "seasons": ["SPRING", "FALL"]
+},
+{
+    "id": 65,
+    "name": "Shad",
+    "type": "FISH",
+    "seasons": ["SPRING", "SUMMER", "FALL"]
+},
+{
+    "id": 66,
+    "name": "Tiger Trout",
+    "type": "FISH",
+    "seasons": ["FALL", "WINTER"]
+},
+{
+    "id": 67,
+    "name": "LargeMouth Bass",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 68,
+    "name": "Carp",
+    "type": "FISH",
+    "seasons": ["SPRING", "SUMMER", "FALL"]
+},
+{
+    "id": 69,
+    "name": "Bullhead",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 70,
+    "name": "Sturgeon",
+    "type": "FISH",
+    "seasons": ["SUMMER", "WINTER"]
+},
+{
+    "id": 71,
+    "name": "Sardine",
+    "type": "FISH",
+    "seasons": ["SPRING", "FALL", "WINTER"]
+},
+{
+    "id": 72,
+    "name": "Tuna",
+    "type": "FISH",
+    "seasons": ["SUMMER", "WINTER"]
+},
+{
+    "id": 73,
+    "name": "Red Snapper",
+    "type": "FISH",
+    "seasons": ["SUMMER", "FALL"]
+},
+{
+    "id": 74,
+    "name": "Tilapia",
+    "type": "FISH",
+    "seasons": ["SUMMER", "FALL"]
+},
+{
+    "id": 75,
+    "name": "Walleye",
+    "type": "FISH",
+    "seasons": ["FALL"]
+},
+{
+    "id": 76,
+    "name": "Bream",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 77,
+    "name": "Eel",
+    "type": "FISH",
+    "seasons": ["SPRING", "FALL"]
+},
+{
+    "id": 78,
+    "name": "Lobster",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 79,
+    "name": "Crayfish",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 80,
+    "name": "Crab",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 81,
+    "name": "Cockle",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 82,
+    "name": "Mussel",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 83,
+    "name": "Shrimp",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 84,
+    "name": "Snail",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 85,
+    "name": "Periwinkle",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 86,
+    "name": "Oyster",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 87,
+    "name": "Clam",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 88,
+    "name": "Pufferfish",
+    "type": "FISH",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 89,
+    "name": "Ghostfish",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 90,
+    "name": "Sandfish",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 91,
+    "name": "Woodskip",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 92,
+    "name": "Copper Bar",
+    "type": "RESOURCES",
+    "seasons": ["ANY"]
+},
+{
+    "id": 93,
+    "name": "Iron Bar",
+    "type": "RESOURCES",
+    "seasons": ["ANY"]
+},
+{
+    "id": 94,
+    "name": "Gold Bar",
+    "type": "RESOURCES",
+    "seasons": ["ANY"]
+},
+{
+    "id": 95,
+    "name": "Quartz",
+    "type": "MINERALS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 96,
+    "name": "Earth Crystal",
+    "type": "MINERALS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 97,
+    "name": "Frozen Tear",
+    "type": "MINERALS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 98,
+    "name": "Fire Quartz",
+    "type": "MINERALS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 99,
+    "name": "99 Slime",
+    "type": "MONSTER_LOOT",
+    "seasons": ["ANY"]
+},
+{
+    "id": 100,
+    "name": "10 Bat Wings",
+    "type": "MONSTER_LOOT",
+    "seasons": ["ANY"]
+},
+{
+    "id": 101,
+    "name": "Solar Essence",
+    "type": "MONSTER_LOOT",
+    "seasons": ["ANY"]
+},
+{
+    "id": 102,
+    "name": "Void Essence",
+    "type": "MONSTER_LOOT",
+    "seasons": ["ANY"]
+},
+{
+    "id": 103,
+    "name": "Maple Syrup",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 104,
+    "name": "Fiddlehead Fern",
+    "type": "FORAGEABLE",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 105,
+    "name": "Truffle",
+    "type": "ANIMAL_PRODUCE",
+    "seasons": ["SPRING", "SUMMER", "FALL"]
+},
+{
+    "id": 106,
+    "name": "Poppy",
+    "type": "CROPS",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 107,
+    "name": "Maki Roll",
+    "type": "OTHER",
+    "seasons": ["ANY"]
+},
+{
+    "id": 108,
+    "name": "Fried Egg",
+    "type": "OTHER",
+    "seasons": ["ANY"]
+},
+{
+    "id": 109,
+    "name": "Red Mushroom",
+    "type": "FORAGEABLE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 110,
+    "name": "Sea Urchin",
+    "type": "FORAGEABLE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 111,
+    "name": "Sunflower",
+    "type": "CROPS",
+    "seasons": ["SUMMER", "FALL"]
+},
+{
+    "id": 112,
+    "name": "Duck Feather",
+    "type": "ANIMAL_PRODUCE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 113,
+    "name": "Aquamarine",
+    "type": "MINERALS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 114,
+    "name": "Red Cabbage",
+    "type": "CROPS",
+    "seasons": ["SUMMER"]
+},
+{
+    "id": 115,
+    "name": "Purple Mushroom",
+    "type": "FORAGEABLE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 116,
+    "name": "Nautilus Shell",
+    "type": "FORAGEABLE",
+    "seasons": ["WINTER"]
+},
+{
+    "id": 117,
+    "name": "Chub",
+    "type": "FISH",
+    "seasons": ["ANY"]
+},
+{
+    "id": 118,
+    "name": "Frozen Geode",
+    "type": "MINERALS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 119,
+    "name": "10 Wheat",
+    "type": "CROPS",
+    "seasons": ["SUMMER", "FALL"]
+},
+{
+    "id": 120,
+    "name": "10 Hay",
+    "type": "CROPS",
+    "seasons": ["SPRING","SUMMER", "FALL"]
+},
+{
+    "id": 121,
+    "name": "3 Apple",
+    "type": "TREES",
+    "seasons": ["FALL"]
+},
+{
+    "id": 122,
+    "name": "Oak Resin",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 123,
+    "name": "Wine",
+    "type": "ARTISAN_GOODS",
+    "seasons": ["ANY"]
+},
+{
+    "id": 124,
+    "name": "Rabbit's Foot",
+    "type": "ANIMAL_PRODUCE",
+    "seasons": ["ANY"]
+},
+{
+    "id": 125,
+    "name": "Pomegranate",
+    "type": "TREES",
+    "seasons": ["FALL"]
+},
+{
+    "id": 126,
+    "name": "2,500g",
+    "type": "OTHER",
+    "seasons": ["ANY"]
+},
+{
+    "id": 127,
+    "name": "5,000g",
+    "type": "OTHER",
+    "seasons": ["ANY"]
+},
+{
+    "id": 128,
+    "name": "10,000g",
+    "type": "OTHER",
+    "seasons": ["ANY"]
+},
+{
+    "id": 129,
+    "name": "25,000g",
+    "type": "OTHER",
+    "seasons": ["ANY"]
 }
 ]

@@ -2,7 +2,210 @@
 {
     "id": 1,
     "name": "Springs Crops Bundle",
-    "requiredItems": [1,2,3,4]
+    "requiredItems": [1,2,3,4],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 2,
+    "name": "Summer Crops Bundle",
+    "requiredItems": [5,6,7,8],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 3,
+    "name": "Fall Crops Bundle",
+    "requiredItems": [9,10,11,12],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 4,
+    "name": "Quality Crops Bundle",
+    "requiredItems": [13,14,15,16],
+    "requiredItemCount": 3
+    
+},
+{
+    "id": 5,
+    "name": "Animal Bundle",
+    "requiredItems": [17,18,19,20,21,22],
+    "requiredItemCount": 5
+    
+},
+{
+    "id": 6,
+    "name": "Artisan Bundle",
+    "requiredItems": [23,24,25,26,27,28,29,30,31,32,33,34],
+    "requiredItemCount": 6
+    
+},
+{
+    "id": 7,
+    "name": "Spring Forage Bundle",
+    "requiredItems": [35,36,37,38],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 8,
+    "name": "Summer Forage Bundle",
+    "requiredItems": [39,40,41],
+    "requiredItemCount": 3
+    
+},
+{
+    "id": 9,
+    "name": "Fall Forage Bundle",
+    "requiredItems": [42,43,44,45],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 10,
+    "name": "Winter Forage Bundle",
+    "requiredItems": [46,47,48,49],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 11,
+    "name": "Construction Bundle",
+    "requiredItems": [50,51,52,53],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 12,
+    "name": "Exotic Forage Bundle",
+    "requiredItems": [54,55,56,57,58,59,60,61,62],
+    "requiredItemCount": 5
+    
+},
+{
+    "id": 13,
+    "name": "River Fish Bundle",
+    "requiredItems": [63,64,65,66],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 14,
+    "name": "Lake Fish Bundle",
+    "requiredItems": [67,68,69,70],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 15,
+    "name": "Ocean Fish Bundle",
+    "requiredItems": [71,72,73,74],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 16,
+    "name": "Night Fish Bundle",
+    "requiredItems": [75,76,77],
+    "requiredItemCount": 3
+    
+},
+{
+    "id": 17,
+    "name": "Crab Pot Bundle",
+    "requiredItems": [78,79,80,81,82,83,84,85,86,87],
+    "requiredItemCount": 5
+    
+},
+{
+    "id": 18,
+    "name": "Specialty Fish Bundle",
+    "requiredItems": [88,89,90,91],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 19,
+    "name": "Blacksmith's Bundle",
+    "requiredItems": [92,93,94],
+    "requiredItemCount": 3
+    
+},
+{
+    "id": 20,
+    "name": "Geologist's Bundle",
+    "requiredItems": [95,96,97,98],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 21,
+    "name": "Adventurer's Bundle",
+    "requiredItems": [99,100,101,102],
+    "requiredItemCount": 2
+    
+},
+{
+    "id": 22,
+    "name": "Chef's Bundle",
+    "requiredItems": [103,104,105,106,107,108],
+    "requiredItemCount": 6
+    
+},
+{
+    "id": 23,
+    "name": "Dye Bundle",
+    "requiredItems": [109,110,111,112,113,114],
+    "requiredItemCount": 6
+    
+},
+{
+    "id": 24,
+    "name": "Field Research Bundle",
+    "requiredItems": [115,116,117,118],
+    "requiredItemCount": 4
+    
+},
+{
+    "id": 25,
+    "name": "Fodder Bundle",
+    "requiredItems": [119,120,121],
+    "requiredItemCount": 3
+    
+},
+{
+    "id": 26,
+    "name": "Enchanter's Bundle",
+    "requiredItems": [122,123,124,125],
+    "requiredItemCount": 4
+    
+},{
+    "id": 27,
+    "name": "2,500 Bundle",
+    "requiredItems": [126],
+    "requiredItemCount": 1
+    
+},
+{
+    "id": 28,
+    "name": "5,000 Bundle",
+    "requiredItems": [127],
+    "requiredItemCount": 1
+    
+},
+{
+    "id": 29,
+    "name": "10,000 Bundle",
+    "requiredItems": [128],
+    "requiredItemCount": 1
+    
+},
+{
+    "id": 30,
+    "name": "25,000 Bundle",
+    "requiredItems": [129],
+    "requiredItemCount": 1
     
 }
 ]

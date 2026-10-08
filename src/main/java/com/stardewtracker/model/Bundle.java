@@ -8,11 +8,13 @@ public class Bundle implements Identifiable{
     private int id;
     private String name;
     private List<Item> requiredItems;
+    private int requiredItemCount;
     
-    public Bundle(int id, String name, List<Item> requiredItems) {
+    public Bundle(int id, String name, List<Item> requiredItems, int requiredItemCount) {
         this.id = id;
         this.name = name;
         this.requiredItems = requiredItems;
+        this.requiredItemCount = requiredItemCount;
     }
     @Override
     public String getName() {
@@ -43,6 +45,15 @@ public class Bundle implements Identifiable{
     public void setId(int id) {
         this.id = id;
     }
+
+    public  int getRequiredItemCount() {
+        return  requiredItemCount;
+    }
+
+    public void setRequiredItemCount() {
+        this.requiredItemCount = requiredItemCount;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

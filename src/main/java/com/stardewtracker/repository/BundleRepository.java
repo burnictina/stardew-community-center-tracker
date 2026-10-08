@@ -38,7 +38,9 @@ public class BundleRepository extends BaseRepository<Bundle>{
             requiredItems.add(item);
         }
 
-        return new Bundle(id, name, requiredItems);
+        int requiredItemCount = object.get("requiredItemCount").asInt();
+
+        return new Bundle(id, name, requiredItems, requiredItemCount);
     }
 
 

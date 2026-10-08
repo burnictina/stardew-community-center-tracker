@@ -237,3 +237,92 @@ GUI trenutno omogućuje:
 - prikaz pripadajućih items
 
 trenutni prikaz je read-only. Items nisu još povezani sa stanjem korisničkog save filea.
+
+
+## 8.10.2026.
+
+## Model podataka i JSON struktura
+
+Podaci potrebni za Community Center tracker pohranjeni su kao statički JSON resursi u src/main/resources/data/. Repository sloj učitava te podatke i pretvara ih u Java objekte koji se koriste u ostatku aplikacije.
+
+## Seasons (Item atribut)
+
+Jedan item može biti dostupan u jednoj ili više sezona, zbog čega Item koristi:
+
+List<Season> seasons
+
+umjesto jedne vrijednosti Season season.
+
+U JSON-u se sezone uvijek zapisuju kao polje, čak i kada item pripada samo jednoj sezoni.
+
+Primjeri:
+
+"seasons": ["SPRING"]
+
+"seasons": ["SUMMER", "FALL"]
+
+Za iteme koji nisu ograničeni na određenu sezonu koristi se:
+
+"seasons": ["ANY"]
+
+Vrijednost ANY ne kombinira se s drugim sezonama.
+
+ItemRepository prolazi kroz JSON polje seasons i svaku tekstualnu vrijednost pretvara u odgovarajući Season enum.
+
+## Bundles s izborom Itema
+
+Nisu svi bundleovi definirani tako da je potrebno prikupiti svaki ponuđeni item. Neki bundleovi imaju više mogućih itema nego što ih je potrebno za završetak.
+
+Zbog toga Bundle osim liste requiredItems sadrži i:
+
+int requiredItemCount
+
+requiredItems predstavlja sve iteme koji mogu zadovoljiti bundle, dok requiredItemCount određuje koliko ih je stvarno potrebno.
+
+Primjer:
+
+Quality Crops Bundle
+
+dostupna su 4 moguća itema
+
+potrebno je prikupiti 3
+
+requiredItems sadrži sva 4 itema
+
+requiredItemCount iznosi 3
+
+Kod običnih bundleova requiredItemCount jednak je broju itema u requiredItems.
+
+Ovaj model omogućuje da GUI prikaže sve moguće opcije, dok se logika završetka bundlea kasnije može temeljiti na broju završenih itema, a ne na veličini liste.
+
+## Povezivanje JSON podataka
+
+Repositoryji povezuju podatke preko ID-eva:
+
+items.json → bundle.json → room.json
+
+BundleRepository za svaki ID iz requiredItems pronalazi odgovarajući Item preko ItemRepository.
+
+RoomRepository na isti način povezuje sobe s pripadajućim bundleovima.
+
+Ako JSON referencira ID koji ne postoji, repository prekida učitavanje i javlja grešku. Time se neispravni odnosi između podataka otkrivaju odmah pri pokretanju aplikacije.
+
+## Trenutno stanje
+
+Statički podaci potrebni aplikaciji uneseni su u JSON resurse i uspješno se učitavaju pri pokretanju aplikacije.
+
+GUI trenutno omogućuje:
+
+prikaz soba
+
+prikaz bundleova odabrane sobe
+
+prikaz itema odabranog bundlea
+
+odabir save filea
+
+prikaz spremljenog stanja itema
+
+promjenu stanja itema pomoću checkboxa
+
+ručno spremanje promjena u save file

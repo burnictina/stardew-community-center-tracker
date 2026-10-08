@@ -23,14 +23,22 @@ public class ItemRepository extends BaseRepository<Item> {
     private static Item parseItem(JsonNode object){
         int id = object.get("id").asInt();
         String name = object.get("name").asText();
-        String seasonString = object.get("season").asText();
         String typeString = object.get("type").asText();
-
-        Season season = Season.valueOf(seasonString);
 
         ItemType type = ItemType.valueOf(typeString);
 
-        return new Item(id,name,type,season);
+        List<Season> seasons = new ArrayList<>();
+
+        JsonNode seasonsNode = object.get("seasons");
+
+        for(JsonNode seasonNode : seasonsNode) {
+            String seasonString = seasonNode.asText();
+            Season season = Season.valueOf(seasonString);
+
+            seasons.add(season);
+        }
+
+        return new Item(id,name,type,seasons);
     }
 
 

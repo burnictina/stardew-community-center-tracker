@@ -37,16 +37,19 @@ public class SaveFile {
     }
    
     public void markItemCompleted(Item item){
-        findBundleItem(item)
-        .ifPresent(i->i.setCompleted(true));
+        BundleItem bundleItem = findBundleItem(item)
+        .orElseGet(()-> {
+            BundleItem newBundleItem = new BundleItem(item, false);
+            bundleProgress.add(newBundleItem);
+            return newBundleItem;
+        });
+
+        bundleItem.setCompleted(true);
     }
 
     public void markItemUncompleted(Item item){
-        BundleItem bundleItem = findBundleItem(item)
-        .orElseThrow(() ->
-            new IllegalArgumentException("Item nije pronađen")
-        );
-        bundleItem.setCompleted(false);
+        findBundleItem(item)
+        .ifPresent(bundleItem -> bundleItem.setCompleted(false));
     }
    
     public boolean isItemCompleted(Item item){

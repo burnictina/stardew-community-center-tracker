@@ -1,5 +1,7 @@
 package com.stardewtracker.model;
 
+import java.util.List;
+
 import com.stardewtracker.enums.*;
 import com.stardewtracker.utils.Identifiable;
 
@@ -8,9 +10,9 @@ public class Item implements Identifiable{
     private int id;
     private String name;
     private ItemType type;
-    private Season season;
+    private List<Season> season;
 
-    public Item(int id, String name, ItemType type, Season season) {
+    public Item(int id, String name, ItemType type, List<Season> season) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -34,11 +36,11 @@ public class Item implements Identifiable{
         this.type = type;
     }
 
-    public Season getSeason() {
+    public List<Season> getSeason() {
         return season;
     }
 
-    public void setSeason(Season season) {
+    public void setSeason(List<Season> season) {
         this.season = season;
     }
 
