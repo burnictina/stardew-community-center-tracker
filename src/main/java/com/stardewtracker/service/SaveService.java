@@ -1,5 +1,6 @@
 package com.stardewtracker.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.stardewtracker.model.*;
@@ -38,5 +39,13 @@ public class SaveService {
 
     public void save(SaveFile save){
         saveRepository.save(save);
+    }
+
+    public SaveFile createSave(String name) {
+        SaveFile newSave = new SaveFile(name, new ArrayList<>());
+
+        saveRepository.addSave(newSave);
+
+        return newSave;
     }
 }

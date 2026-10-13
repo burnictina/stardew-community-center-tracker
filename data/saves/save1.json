@@ -5,24 +5,24 @@
     "completed" : true
   }, {
     "itemId" : 2,
-    "completed" : false
+    "completed" : true
   }, {
     "itemId" : 3,
     "completed" : true
   }, {
     "itemId" : 4,
-    "completed" : false
+    "completed" : true
   }, {
     "itemId" : 5,
-    "completed" : false
+    "completed" : true
   }, {
     "itemId" : 6,
-    "completed" : false
+    "completed" : true
   }, {
     "itemId" : 7,
-    "completed" : false
+    "completed" : true
   }, {
     "itemId" : 8,
-    "completed" : false
+    "completed" : true
   } ]
 }

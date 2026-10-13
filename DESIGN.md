@@ -326,3 +326,69 @@ prikaz spremljenog stanja itema
 promjenu stanja itema pomoću checkboxa
 
 ručno spremanje promjena u save file
+
+
+## 13.10.2026.
+
+## Završne funkcionalnosti
+
+### Praćenje napretka
+
+Za računanje napretka koristi se `ProgressService`. Time je logika računanja odvojena od `MainControllera`, čija je odgovornost prikaz rezultata u korisničkom sučelju.
+
+Napredak se računa hijerarhijski:
+
+`Item → Bundle → Room → ukupni Community Center`
+
+Za svaki bundle broji se koliko je njegovih ponuđenih itema završeno u trenutno odabranom `SaveFileu`.
+
+Budući da neki bundleovi imaju više ponuđenih itema nego što ih je potrebno za završetak, broj završenih zahtjeva ograničen je vrijednošću `requiredItemCount`.
+
+Zbog toga se doprinos bundlea ukupnom napretku računa kao:
+
+`min(broj završenih itema, requiredItemCount)`
+
+Primjer je Quality Crops Bundle koji ima četiri moguća itema, ali zahtijeva samo tri. Označavanje četvrtog itema nakon što su tri već završena ne povećava ukupni napredak.
+
+`ProgressService` sadrži odvojene metode za računanje napretka bundlea, sobe i liste svih soba. Više razine koriste već postojeću logiku nižih razina umjesto ponavljanja istog računanja.
+
+Ukupan potreban broj zahtjeva dobiva se zbrajanjem `requiredItemCount` vrijednosti svih bundleova. `SaveFile.getTotalItemCount()` ne koristi se kao nazivnik jer save koristi sparse model i ne mora sadržavati zapis za svaki mogući item.
+
+`MainController` koristi `ProgressService` za prikaz ukupnog napretka. Prikaz se automatski osvježava kada korisnik promijeni trenutno odabrani save ili označi odnosno odznači item.
+
+### Izrada novog savea
+
+Novi save moguće je napraviti iz korisničkog sučelja pomoću gumba `New Save`.
+
+Korisnik unosi naziv pomoću JavaFX `TextInputDialoga`.
+
+Tok kreiranja savea je:
+
+`GUI → MainController → SaveService → SaveFileRepository → JSON`
+
+`SaveService.createSave()` stvara novi `SaveFile`, dok je `SaveFileRepository` odgovoran za dodavanje savea i zapisivanje JSON datoteke na disk.
+
+Novi save koristi sparse model i zato započinje s praznim `bundleProgress`.
+
+Item koji nije prisutan u `bundleProgress` smatra se nezavršenim. Zapis za item dodaje se kada korisnik prvi put označi taj item kao završen.
+
+Nakon uspješnog stvaranja novi `SaveFile` dodaje se u postojeći ComboBox i automatski se odabire. Postojeći listener ComboBoxa zatim postavlja novi `currentSave`, osvježava prikazane checkboxove i ponovno računa napredak.
+
+Naziv savea ne smije biti prazan. Repository također sprječava stvaranje savea s nazivom koji već postoji. Greške se u GUI-ju prikazuju korisniku pomoću JavaFX `Alert` dijaloga, umjesto prekidanja rada aplikacije.
+
+### Završni funkcionalni tok
+
+Aplikacija nakon završetka funkcionalne implementacije omogućuje:
+
+- učitavanje soba, bundleova i itema iz JSON resursa
+- prikaz sadržaja odabrane sobe i bundlea
+- odabir postojećeg savea
+- prikaz stanja itema za odabrani save
+- označavanje i odznačavanje završenih itema
+- spremanje promjena u JSON save datoteku
+- podršku za bundleove kod kojih je potreban samo dio ponuđenih itema
+- računanje i automatsko osvježavanje ukupnog napretka
+- izradu novog savea iz GUI-ja
+- ponovno učitavanje spremljenih podataka nakon ponovnog pokretanja aplikacije
+
+Funkcionalni dio aplikacije time je završen. Sljedeća faza razvoja usmjerena je na vizualno oblikovanje JavaFX korisničkog sučelja bez promjene postojeće poslovne logike.

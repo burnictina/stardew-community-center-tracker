@@ -1,13 +1,17 @@
 package com.stardewtracker.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
+
+import java.util.Optional;
 
 import com.stardewtracker.model.Bundle;
 import com.stardewtracker.model.Item;
@@ -17,6 +21,7 @@ import com.stardewtracker.repository.BundleRepository;
 import com.stardewtracker.repository.ItemRepository;
 import com.stardewtracker.repository.RoomRepository;
 import com.stardewtracker.repository.SaveFileRepository;
+import com.stardewtracker.service.ProgressService;
 import com.stardewtracker.service.RoomService;
 import com.stardewtracker.service.SaveService;
 
@@ -40,9 +45,14 @@ public class MainController {
     @FXML 
     private ComboBox<SaveFile> saveComboBox;
 
+    @FXML 
+    private Label progressLabel;
+
     private RoomService roomService;
 
     private SaveService saveService;
+
+    private ProgressService progressService;
 
     private SaveFile currentSave;
 
@@ -58,6 +68,8 @@ public class MainController {
         SaveFileRepository saveFileRepository = new SaveFileRepository(itemRepository);
 
         saveService = new SaveService(saveFileRepository, itemRepository);
+
+        progressService = new ProgressService();
     }
 
     @FXML 
@@ -132,6 +144,8 @@ public class MainController {
                 if(selectedBundle != null) {
                     showBundle(selectedBundle);
                 }
+
+                updateProgress();
             }
         });
 
@@ -174,6 +188,8 @@ public class MainController {
                 } else {
                     saveService.uncompleteItem(currentSave, item.getId());
                 }
+
+                updateProgress();
             });
 
             itemContainer.getChildren().add(checkBox);
@@ -187,5 +203,73 @@ public class MainController {
         }
 
         saveService.save(currentSave);
+    }
+
+    @FXML 
+    private void handleNewSave() {
+        TextInputDialog dialog = new TextInputDialog();
+
+        dialog.setTitle("New Save");
+        dialog.setHeaderText("Create a new save");
+        dialog.setContentText("Save name: ");
+
+        Optional<String> result = dialog.showAndWait();
+
+        if(result.isEmpty()){
+            return;
+        }
+
+        String name = result.get().trim();
+
+        if(name.isEmpty()){
+            showError("Invalid save name","Save cannot be empty.");
+            return;
+        }
+
+        try{
+        SaveFile newSave = saveService.createSave(name);
+
+        saveComboBox.getItems().add(newSave);
+        saveComboBox.getSelectionModel().select(newSave);
+        }
+        catch(RuntimeException e){
+            showError("Could not create save", e.getMessage());
+        }
+    }
+
+    private void updateProgress() {
+        if (currentSave == null) {
+            progressLabel.setText("Progress: 0 / 0 (0%)");
+            return;
+        }
+
+        int completed = progressService.getCompletedCount(roomService.getAllRooms(), currentSave);
+
+        int required = progressService.getRequiredCount(roomService.getAllRooms());
+
+        int percentage = 0;
+
+        if (required > 0) {
+            percentage = (int) Math.round((double) completed / required * 100);
+        }
+
+        progressLabel.setText(
+            "Progress: "
+            + completed
+            + " / "
+            + required
+            + " ("
+            + percentage
+            + "%)"
+        );
+    }
+    private void showError(String title, String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 }

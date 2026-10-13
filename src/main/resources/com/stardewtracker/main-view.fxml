@@ -15,6 +15,7 @@
             <Label text="Stardew Community Center Tracker" />
             <Label prefHeight="17.0" prefWidth="34.0" text="Save:" />
             <ComboBox fx:id="saveComboBox" prefWidth="150.0" />
+            <Button mnemonicParsing="false" onAction="#handleNewSave" text="New Save" />
          </children>
       </HBox>
    </top>
@@ -39,8 +40,8 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Progress" />
-            <Button  mnemonicParsing="false" onAction="#handleSave" text="Save" />
+            <Label fx:id="progressLabel" text="Progress : 0 / 0 (0%)" />
+            <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
          </children>
       </HBox>
    </bottom>
