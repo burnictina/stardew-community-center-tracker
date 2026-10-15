@@ -1,4 +1,15 @@
-
+# Java compiled files
 *.class
+
+# Maven build output
 target/
+
+# VS Code local settings
 .vscode/
+
+# Generated application packages
+dist/
+installer/
+
+# Local/test save files
+data/saves/*.json

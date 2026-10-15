@@ -7,8 +7,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.FlowPane;
 import javafx.util.StringConverter;
 
 import java.util.Optional;
@@ -40,13 +41,19 @@ public class MainController {
     private Label bundleTitleLabel;
 
     @FXML 
-    private VBox itemContainer;
+    private FlowPane itemContainer;
 
     @FXML 
     private ComboBox<SaveFile> saveComboBox;
 
     @FXML 
     private Label progressLabel;
+
+    @FXML 
+    private ProgressBar progressBar;
+
+    @FXML 
+    private Label bundleProgressLabel;
 
     private RoomService roomService;
 
@@ -82,7 +89,11 @@ public class MainController {
                 if  (empty || room == null){
                     setText(null);
                 } else {
-                    setText(room.getName());
+                    if (currentSave != null && progressService.isRoomCompleted(room, currentSave)) {
+                        setText(room.getName() + " ★");
+                    } else {
+                        setText(room.getName());
+                    }
                 }
             }
         });
@@ -102,7 +113,11 @@ public class MainController {
                 if  (empty || bundle == null){
                     setText(null);
                 } else {
-                    setText(bundle.getName());
+                    if (currentSave != null && progressService.isBundleCompleted(bundle, currentSave)){
+                        setText(bundle.getName() + "🎁");
+                    } else {
+                        setText(bundle.getName());
+                    }
                 }
             }
         });
@@ -173,6 +188,7 @@ public class MainController {
         for (Item item : bundle.getRequiredItems()) {
 
             CheckBox checkBox = new CheckBox(item.getName());
+            checkBox.getStyleClass().add("item-check");
 
             if(currentSave != null) {
                 checkBox.setSelected(currentSave.isItemCompleted(item));
@@ -189,11 +205,14 @@ public class MainController {
                     saveService.uncompleteItem(currentSave, item.getId());
                 }
 
+                updateBundleProgress(bundle);
                 updateProgress();
             });
 
             itemContainer.getChildren().add(checkBox);
         }
+
+        updateBundleProgress(bundle);
     }
 
     @FXML 
@@ -240,6 +259,7 @@ public class MainController {
     private void updateProgress() {
         if (currentSave == null) {
             progressLabel.setText("Progress: 0 / 0 (0%)");
+            progressBar.setProgress(0);
             return;
         }
 
@@ -247,11 +267,14 @@ public class MainController {
 
         int required = progressService.getRequiredCount(roomService.getAllRooms());
 
-        int percentage = 0;
-
-        if (required > 0) {
-            percentage = (int) Math.round((double) completed / required * 100);
+        double progress = 0;
+        if(required > 0) {
+            progress = (double) completed / required;
         }
+
+        int percentage = (int) Math.round(progress * 100);
+
+        progressBar.setProgress(progress);
 
         progressLabel.setText(
             "Progress: "
@@ -262,6 +285,9 @@ public class MainController {
             + percentage
             + "%)"
         );
+
+        bundleListView.refresh();
+        roomListView.refresh();
     }
     private void showError(String title, String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -272,4 +298,29 @@ public class MainController {
 
         alert.showAndWait();
     }
+
+    private void updateBundleProgress(Bundle bundle) {
+
+    if (currentSave == null) {
+        bundleProgressLabel.setText(
+            "0 / "
+            + bundle.getRequiredItemCount()
+            + " completed"
+        );
+        return;
+    }
+
+    int completed =
+        progressService.getCompletedCount(bundle, currentSave);
+
+    int required =
+        bundle.getRequiredItemCount();
+
+    bundleProgressLabel.setText(
+        completed
+        + " / "
+        + required
+        + " completed"
+    );
+}
 }

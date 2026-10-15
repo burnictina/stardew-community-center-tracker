@@ -392,3 +392,104 @@ Aplikacija nakon završetka funkcionalne implementacije omogućuje:
 - ponovno učitavanje spremljenih podataka nakon ponovnog pokretanja aplikacije
 
 Funkcionalni dio aplikacije time je završen. Sljedeća faza razvoja usmjerena je na vizualno oblikovanje JavaFX korisničkog sučelja bez promjene postojeće poslovne logike.
+
+## 15.10.2026.
+
+## Vizualno oblikovanje GUI-ja
+
+Nakon završetka funkcionalnog dijela započeto je vizualno oblikovanje JavaFX korisničkog sučelja.
+
+Dodana je `style.css` datoteka koja odvaja vizualni izgled aplikacije od FXML strukture i Java logike.
+
+GUI koristi toplu paletu smeđih, zlatnih i svijetlih tonova inspiriranu izgledom Stardew Valley Community Centera.
+
+Stilizirani su:
+
+- glavni dijelovi aplikacije
+- naslovi
+- Room i Bundle liste
+- gumbi
+- ComboBox
+- ProgressBar
+- checkbox prikaz itema
+
+`itemContainer` promijenjen je iz `VBox` u `FlowPane` kako bi se itemi mogli prikazivati u više stupaca i automatski prilagođavati dostupnoj širini.
+
+FlowPane se nalazi unutar ScrollPanea kako bi veći bundleovi ostali pregledni bez povećavanja cijelog prozora.
+
+Povećana je i početna veličina aplikacijskog prozora kako bi se bolje iskoristio prostor za prikaz podataka.
+
+
+## Vizualni prikaz završenih Roomova i Bundleova
+
+`ProgressService` koristi se i za određivanje je li cijeli Room ili Bundle završen.
+
+Završeni Room trenutno se označava zvjezdicom, a završeni Bundle simbolom poklona.
+
+Nakon promjene stanja itema osvježavaju se Room i Bundle liste kako bi se oznake završetka odmah ažurirale.
+
+Ove oznake trenutno predstavljaju funkcionalnu verziju vizualnog feedbacka i mogu se kasnije zamijeniti vlastitim grafičkim elementima.
+
+
+## Lokacija korisničkih save datoteka
+
+Save datoteke više se ne spremaju relativno uz direktorij iz kojeg je aplikacija pokrenuta.
+
+Takav pristup nije prikladan za instaliranu desktop aplikaciju jer radni direktorij nije pouzdano mjesto za korisničke podatke.
+
+`SaveFileRepository` sada koristi stabilnu lokaciju korisničkih podataka na Windowsu:
+
+`%LOCALAPPDATA%\StardewCommunityCenterTracker\saves`
+
+Ako `LOCALAPPDATA` nije dostupan, koristi se fallback direktorij unutar `user.home`.
+
+Time su programske datoteke odvojene od korisničkih podataka, a saveovi ostaju dostupni neovisno o tome pokreće li se aplikacija kroz Maven ili kao instalirana Windows aplikacija.
+
+Testirano je stvaranje savea, spremanje promjena, zatvaranje aplikacije i ponovno učitavanje podataka nakon pokretanja.
+
+
+## Priprema aplikacije za distribuciju
+
+Aplikacija je pripremljena za pokretanje izvan razvojnog okruženja.
+
+Maven `package` faza stvara glavni JAR i kopira runtime dependencyje u `target/libs`.
+
+`maven-dependency-plugin` koristi `runtime` scope kako testne biblioteke poput JUnita i Hamcresta ne bi završile u distribucijskom paketu.
+
+Za Windows distribuciju koristi se JDK `jpackage`.
+
+JavaFX moduli potrebni aplikaciji uključeni su u vlastiti runtime pomoću `jlink` procesa koji pokreće `jpackage`.
+
+Time krajnji korisnik ne mora zasebno instalirati:
+
+- JDK ili JRE
+- JavaFX
+- Maven
+- VS Code
+
+
+## Windows installer
+
+Za izradu Windows installera koristi se `jpackage` zajedno s WiX Toolsetom.
+
+Prvo je napravljen i testiran `app-image`, čime je potvrđeno da aplikacija radi s vlastitim runtimeom.
+
+Nakon toga napravljen je Windows EXE installer verzije `1.0.0`.
+
+Installer omogućuje instalaciju aplikacije te stvaranje Start Menu i desktop prečaca.
+
+Finalni installer:
+
+`Stardew Community Center Tracker-1.0.0.exe`
+
+Testirana je instalirana verzija aplikacije.
+
+Potvrđeno je:
+
+- aplikacija se uspješno instalira
+- aplikacija se pokreće bez VS Codea i Mavena
+- Java i JavaFX runtime dolaze zajedno s aplikacijom
+- postojeći saveovi iz `%LOCALAPPDATA%` pravilno se učitavaju
+- promjene se mogu spremiti i ponovno učitati nakon ponovnog pokretanja aplikacije
+
+Time je napravljena prva samostalna Windows verzija aplikacije spremna za distribuciju.

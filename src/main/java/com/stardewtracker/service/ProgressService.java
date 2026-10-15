@@ -65,4 +65,8 @@ public class ProgressService {
 
         return requiredCount;
     }
+
+    public boolean isRoomCompleted(Room room, SaveFile save) {
+        return getCompletedCount(room, save) >= getRequiredCount(room);
+    }
 }

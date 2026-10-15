@@ -14,10 +14,29 @@ public class SaveFileRepository {
     private List<SaveFile> saves;
     private ItemRepository itemRepository;
 
-    public SaveFileRepository(ItemRepository itemRepository){
+    private final Path savesDirectory;
+
+    public SaveFileRepository(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
+
+        String localAppData = System.getenv("LOCALAPPDATA");
+
+        if (localAppData != null && !localAppData.isBlank()) {
+            this.savesDirectory = Path.of(
+                localAppData,
+                "StardewCommunityCenterTracker",
+                "saves"
+            );
+        } else {
+            this.savesDirectory = Path.of(
+                System.getProperty("user.home"),
+                ".stardew-community-center-tracker",
+                "saves"
+            );
+        }
+
         this.saves = loadSaves();
-    }
+    }   
 
     public List<SaveFile> getAllSaves(){
         return new ArrayList<>(saves);
@@ -105,14 +124,14 @@ public class SaveFileRepository {
         .toLowerCase()
         .replace(" ", "") + ".json";
 
-        return Path.of("data","saves", fileName);
+        return savesDirectory.resolve(fileName);
     }
 
     private List<SaveFile> loadSaves(){
         List<SaveFile> saveList = new ArrayList<>();
 
         try{
-            Path folder = Path.of("data","saves");
+            Path folder = savesDirectory;
 
             if(!Files.exists(folder)){
                 return saveList;
